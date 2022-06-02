@@ -90,8 +90,18 @@
 \RequirePackage{ifoddpage}
 \RequirePackage{booktabs}
 % 使用gbt7714
-\usepackage{natbib}
-\usepackage[sort&compress]{gbt7714}
+\usepackage[
+  backend=biber,
+  autolang=hyphen,
+  style=gb7714-2015,
+  gbtype=true,
+  gbalign=gb7714-2015,
+  gbnamefmt=lowercase,
+  doi=false,
+  url=false,
+  isbn=false
+  ]{biblatex}
+\addbibresource{reference.bib}
 
 % 这是啥？？？
 \newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
@@ -163,7 +173,7 @@
 \setlength{\topskip}{0pt}
 
 % 参考文献间距设置
-\setlength{\bibsep}{0pt}
+\setlength{\bibitemsep}{0pt}
 
 % 页眉页脚设置 *****要求页眉1.5cm，页脚1.75cm
 \setlength{\headheight}{1.5cm}
@@ -575,10 +585,7 @@
 	{\thechapter}{30pt}{}
 	\titlespacing{\chapter}{0pt}{0pt}{0pt}
 	
-	\fontsize{10.5pt}{10.5pt}\selectfont{
-		\bibliographystyle{gbt7714-numerical}
-		\bibliography{reference}
-	}
+	\fontsize{10.5pt}{10.5pt}\selectfont\printbibliography
 
 	\titleformat{\chapter}[block]
 	{\centering\fontsize{15pt}{15pt}\selectfont\heiti\thispagestyle{fancy}}

@@ -2,10 +2,12 @@
 \usepackage[utf8]{inputenc}
 \usepackage{xeCJK}
 \usepackage{graphicx}
-\usepackage {mathtools}
+\usepackage{mathtools}
 \usepackage{utopia} %font utopia imported
+\usepackage{hyperref}
 \usetheme{CambridgeUS}
 \usecolortheme{dolphin}
+
 
 % 南邮VI手册给出了南邮指定的颜色代码，
 \definecolor{cstd}{cmyk}{100,90,0,0}
@@ -16,7 +18,8 @@
 \definecolor{cgrey}{cmyk}{0,0,0,60}
 \definecolor{clightgrey}{cmyk}{0,0,0,30}
 
-% 使用转换工具https://www.qtccolor.com/secaiku/tool/convert?m=cmyk将颜色转换为RGB
+% 使用转换工具https://www.qtccolor.com/secaiku/tool/convert?m=cmyk将颜色转换为RGB，
+% 这样可以获得较好的显示效果
 \definecolor{rstd}{RGB}{2,55,139}
 \definecolor{rblue}{RGB}{9,142,202}
 \definecolor{rgreen}{RGB}{121,180,28}
@@ -25,7 +28,7 @@
 \definecolor{rgrey}{RGB}{134,135,137}
 \definecolor{rlightgrey}{RGB}{197,198,199}
 
-
+%使用南邮的配色设置内容
 \setbeamercolor*{palette primary}{bg=rgreen}
 \setbeamercolor*{palette secondary}{bg=rblue, fg = white}
 \setbeamercolor*{palette tertiary}{bg=rstd, fg = white}
@@ -34,26 +37,83 @@
 \setbeamercolor*{item}{fg=rstd}
 \setbeamercolor*{caption name}{fg=rstd}
 \usefonttheme{professionalfonts}
-\usepackage{natbib}
-\usepackage{hyperref}
+
+% 增加参考文献引用支持
+\usepackage[backend=biber,autolang=hyphen,style=gb7714-2015,
+gbtype=true,gbalign=gb7714-2015,
+doi=false,url=false,isbn=false]{biblatex}
+% 引入参考文献数据库
+\addbibresource[location=local]{reference.bib}
+
 %------------------------------------------------------------
-\titlegraphic{\includegraphics[height=1.5cm]{pic/njupt.logo_full.pdf}}
 \logo{\includegraphics[width=.2\textwidth]{pic/njupt.motto.pdf}}
 
-\setbeamerfont{title}{size=\large}
+\setbeamerfont{title}{size=\Large}
 \setbeamerfont{subtitle}{size=\small}
 \setbeamerfont{author}{size=\small}
-\setbeamerfont{date}{size=\small}
+\setbeamerfont{date}{size=\tiny}
 \setbeamerfont{institute}{size=\small}
-\title[南京邮电大学]{现代控制理论的三个月与三十年}
-\subtitle{写在人工智能热潮的时代}
-\author[李倩茹]{李倩茹 \and 沈梦辰  \and 丕艾谛}
 
-\institute[自动化学院、人工智能学院]{南京邮电大学
+\renewcommand{\normalsize}{\fangsong\selectfont}%把常规大小设置为24pt
+\setbeamerfont{title}{family=\heiti,series=\bfseries}
+%帧标题字体
+\setbeamerfont{frametitle}{family=\heiti,series=\bfseries}
+%帧子标题字体
+\setbeamerfont{framesubtitle}{family=\kaishu,series=\bfseries}
+\setbeamerfont{footline}{family=\kaishu,size=\tiny}
 
-自动化学院、人工智能学院}
-\date[南京 2022年6月]
-{南京 2022年6月}
+% 设置段落首行缩进
+\setlength\parindent{20pt}
+\setlength\parskip{0pt}
+
+%------------------------------------------------------
+
+%设置标题页
+\setbeamertemplate{title page}{%
+\includegraphics[height=1.2cm]{pic/njupt.logo_full.pdf}\par
+\centering
+  \songti\selectfont
+    {%
+    \usebeamerfont{title}
+        \inserttitle
+    }\par
+    {%
+    \usebeamerfont{subtitle}
+        \insertsubtitle
+    }\par\medskip
+    {%
+    \color{rstd}
+        \rule{\linewidth}{1pt}
+    }\par\medskip
+    
+    
+    {%
+    \usebeamercolor[fg]{author}
+    \usebeamerfont{author}
+      汇报人：李倩茹、 沈梦辰
+
+      指导老师：丕艾谛
+    }\par\smallskip
+    {%
+    \usebeamercolor[fg]{institute}
+    \usebeamerfont{institute}
+        南京邮电大学
+
+        自动化学院、人工智能学院
+    }\par\medskip
+    \vspace*{10pt}
+    {%
+    \usebeamercolor[fg]{date}
+    \usebeamerfont{date}
+        \insertdate
+    }\par
+}
+
+\title[南京邮电大学]{控制理论的三个月与三十年}
+\subtitle{Three Months and Tirty Years of Control}
+\author[李倩茹]{}
+\institute[自动化学院、人工智能学院]{}
+\date[南京 \today]{南京 \today}
 
 %------------------------------------------------------------
 %This block of commands puts the table of contents at the 
@@ -81,13 +141,34 @@
 
 %The next statement creates the title page.
 \frame{\titlepage}
+\setbeamertemplate{background} 
+{
+    \raggedright
+    \includegraphics[trim=-680pt 0 0 -200pt,height=0.8\paperheight]{pic/njupt.pattern.pdf}
+}
 \begin{frame}
 \frametitle{主要内容}
 \tableofcontents
 \end{frame}
+\setbeamertemplate{background}{}
 %------------------------------------------------------------
 
-\section{简介}
+\section{写在前面}
+
+\begin{frame}{beamer}
+  beamer 中每一页的内容都包含在frame环境中，这一部分将简单介绍beamer进行演示文稿制作的主要途径。
+  本PPT内容均为拼凑而来，内容服务于展示beamer模板的需求，而不能保证正确性。
+
+  虽然beamer官方不建议使用引用和脚注，但是由于答辩PPT主要用于演示研究成果，所以相关功能也加入到了文档中。
+
+  个人建议，当重点关注其他内容时，可以采用“xelatex”一次编译，而需要编译完整文档时采用四次编译“xe->biber->xe->xe”。
+  祝大家答辩顺利。
+
+  脚注使用示例\footnote{感谢南邮给予的学这些杂乱知识的机会}，引用文献示例\footfullcite{荣洁2005俄罗斯民族性格和文化}。
+  
+\end{frame}
+
+\section{控制简介}
 
 \begin{frame}{系统、控制、应用数学}
   控制理论是讲述系统控制科学中具有新观念、新思想的理论研究成果及其在各个领域中，特别是高科技领域中的应用研究成果，但是在民用领域即实际生活中有很严重的脱节。
@@ -121,10 +202,10 @@
 
 \section*{致谢}  
   \begin{frame}
-  \textcolor{rstd}{\Huge{\centerline{感谢聆听}}}
+  \textcolor{rstd}{\Huge\kaishu{\centerline{感谢聆听}}}
   \vspace{8pt}
   
-  \textcolor{rgreen}{\songti\centerline{感谢各位答辩老师的聆听，恳请老师批评指正}}
+  \textcolor{rgreen}{\songti\centerline{感谢各位答辩老师，恳请老师批评指正}}
   \end{frame}
 
 \end{document}
