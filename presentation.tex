@@ -54,19 +54,20 @@ doi=false,url=false,isbn=false]{biblatex}
 \setbeamerfont{date}{size=\tiny}
 \setbeamerfont{institute}{size=\small}
 
-\renewcommand{\normalsize}{\fangsong\selectfont}%把常规大小设置为24pt
-\setbeamerfont{title}{family=\heiti,series=\bfseries}
-%帧标题字体
-\setbeamerfont{frametitle}{family=\heiti,series=\bfseries}
-%帧子标题字体
-\setbeamerfont{framesubtitle}{family=\kaishu,series=\bfseries}
-\setbeamerfont{footline}{family=\kaishu,size=\tiny}
-
 % 设置段落首行缩进
 \setlength\parindent{20pt}
 \setlength\parskip{0pt}
 
 %------------------------------------------------------
+
+% %设置不同部分的字体，注意不同设备中安装的字体会不同
+% \renewcommand{\normalfont}{\fangsong}
+% \setbeamerfont{title}{family=\heiti,series=\bfseries}
+% %帧标题字体
+% \setbeamerfont{frametitle}{family=\heiti,series=\bfseries}
+% %帧子标题字体
+% \setbeamerfont{framesubtitle}{family=\kaishu,series=\bfseries}
+% \setbeamerfont{footline}{family=\kaishu,size=\tiny}
 
 %设置标题页
 \setbeamertemplate{title page}{%
@@ -202,10 +203,10 @@ doi=false,url=false,isbn=false]{biblatex}
 
 \section*{致谢}  
   \begin{frame}
-  \textcolor{rstd}{\Huge\kaishu{\centerline{感谢聆听}}}
+  \textcolor{rstd}{\Huge{\centerline{感谢聆听}}}
   \vspace{8pt}
   
-  \textcolor{rgreen}{\songti\centerline{感谢各位答辩老师，恳请老师批评指正}}
+  \textcolor{rgreen}{\centerline{感谢各位答辩老师，恳请老师批评指正}}
   \end{frame}
 
 \end{document}
