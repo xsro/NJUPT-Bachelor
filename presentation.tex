@@ -178,19 +178,38 @@ doi=false,url=false,isbn=false]{biblatex}
 \setbeamertemplate{background}{}
 %------------------------------------------------------------
 
-\section{写在前面}
+\section{模板用法}
 
-\begin{frame}{beamer}
+\begin{frame}[fragile=singleslide]{latex与beamer}
   beamer 中每一页的内容都包含在frame环境中，这一部分将简单介绍beamer进行演示文稿制作的主要途径。
   本PPT内容均为拼凑而来，内容服务于展示beamer模板的需求，而不能保证正确性。
 
-  虽然beamer官方不建议使用引用和脚注，但是由于答辩PPT主要用于演示研究成果，所以相关功能也加入到了文档中。
-
   个人建议，当重点关注其他内容时，可以采用“xelatex”一次编译，而需要编译完整文档时采用四次编译“xe->biber->xe->xe”。
-  祝大家答辩顺利。
+  四次编译主要是为了参考文献的正确插入。
 
-  脚注使用示例\footnote{感谢南邮给予的学这些杂乱知识的机会}，引用文献示例\footfullcite{荣洁2005俄罗斯民族性格和文化}。
-  
+  可以使用”latexmk“来进行编译，其会自动调用相关工具进行编译，命令可以参考如下：
+
+  \begin{verbatim}
+    latexmk -xelatex main.tex
+    latexmk -xelatex presentation.tex
+  \end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{参考文献}
+    虽然beamer官方不建议使用引用和脚注，但是由于答辩PPT主要用于演示研究成果，所以相关功能也加入到了文档中。
+    参考文献的添加方式改为使用\textbf{biblatex}，以下为我推荐的参考文献引用方式：
+
+    在slides中使用脚注的形式来插入少量的参考文献，
+    如使用\verb|\footfullcite{PRODEN}|其效果为\footfullcite{PRODEN}。
+
+    在论文中，推荐比较像word中效果的命令，\verb|\cite{PRODEN}|用于句子后面引用，效果为“\cite{PRODEN}”。
+    使用\verb|文献\parencite{PRODEN}|作为主语引用文献，效果为“文献\parencite{PRODEN}”
+
+    附带脚注的插入方法为\verb|\footnote{xx}|效果为“\footnote{感谢南邮给予的学这些杂乱知识的机会} ”。
+
+    详细参考文献引用的命令参见\textbf{biblatex}文档 \footnote{\url{https://ctan.org/pkg/biblatex}}，
+    或使用\verb|texdoc beamer|命令查看。
+    
 \end{frame}
 
 \section{控制简介}

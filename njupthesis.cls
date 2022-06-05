@@ -584,8 +584,10 @@
 	{\fontsize{16pt}{16pt}\selectfont\heiti\thispagestyle{fancy}}
 	{\thechapter}{30pt}{}
 	\titlespacing{\chapter}{0pt}{0pt}{0pt}
+
+  \renewcommand*{\bibfont}{\fontsize{10.5pt}{10.5pt}\selectfont}
 	
-	\fontsize{10.5pt}{10.5pt}\selectfont\printbibliography
+	\printbibliography
 
 	\titleformat{\chapter}[block]
 	{\centering\fontsize{15pt}{15pt}\selectfont\heiti\thispagestyle{fancy}}
